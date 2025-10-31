@@ -1,0 +1,136 @@
+/* Universal Reset and Basic Typography */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #1e88e5; /* A pleasant blue */
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+p {
+    color: #777;
+}
+
+/* Form and Fieldset Styling */
+#calorie-form fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+}
+
+#calorie-form legend {
+    font-weight: bold;
+    color: #1e88e5;
+    padding: 0 10px;
+    font-size: 1.1em;
+}
+
+/* Input and Label Alignment */
+#calorie-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+#calorie-form input[type="number"],
+#calorie-form select {
+    width: calc(100% - 10px); /* Full width minus padding */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Specific styling for the Weight/Height input groups for inline elements */
+fieldset > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+fieldset > div label:first-child {
+    flex-grow: 0;
+}
+
+/* Customizing the gender radio buttons to align better */
+fieldset > div:nth-child(3) { /* Targeting the gender div */
+    display: block;
+}
+fieldset > div:nth-child(3) input,
+fieldset > div:nth-child(3) label {
+    display: inline-block;
+    width: auto;
+    margin-right: 15px;
+}
+
+/* Specific styling for Height inputs (feet/inches) */
+#height-ft-in input {
+    width: 80px;
+    margin-right: 5px;
+}
+
+/* Submit Button Style */
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50; /* Green submit button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Result Area Styling */
+#result-area {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e3f2fd; /* Light blue background for emphasis */
+    border: 1px solid #bbdefb;
+    border-radius: 6px;
+    text-align: center;
+}
+
+#result-area h2 {
+    color: #1e88e5;
+    font-size: 1.4em;
+    margin-top: 0;
+}
+
+#tdee-result {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #c62828; /* Highlight the result */
+}
