@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Titan+One&display=swap" rel="stylesheet">
 
     <style>
-        /* Base Styles (Consistent with index.html) */
         body {
             font-family: Arial, sans-serif;
             color: #333;
@@ -23,7 +22,6 @@
             background-position: center center;
         }
 
-        /* Header Tile Container */
         header {
             text-align: center;
             padding: 20px 0;
@@ -43,7 +41,6 @@
             text-align: center;
         }
 
-        /* H1 used for the tile title */
         header h1 {
             color: #1e88e5;
             font-size: 3em;
@@ -78,7 +75,6 @@
             margin-bottom: 10px;
         }
         
-        /* === BMI Tachymeter Styles === */
         #bmi-gauge-container {
             position: relative;
             width: 400px; 
@@ -117,8 +113,6 @@
             z-index: 1; 
         }
 
-
-        /* Category Label Styles */
         .category {
             font-size: 1.4em;
             padding: 8px;
@@ -128,7 +122,6 @@
             display: inline-block;
         }
 
-        /* Category specific colors for the label background */
         .category[data-category*="Underweight"] { background-color: #ff9800; }
         .category[data-category*="Normal"] { background-color: #4CAF50; }
         .category[data-category*="Overweight"] { background-color: #ff5722; }
@@ -220,7 +213,7 @@
             // Map the ratio to the angular range
             angle = minAngle + positionRatio * (maxAngle - minAngle);
 
-            // Apply the rotation transform to the needle element, preserving the translateX
+            // Apply the rotation transform to the needle element
             needle.style.transform = `translateX(-50%) rotate(${angle}deg)`;
         });
     </script>
