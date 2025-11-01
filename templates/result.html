@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Results</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Titan+One&display=swap" rel="stylesheet">
+
+    <style>
+        /* Base Styles (Consistent with index.html) */
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-image: url("{{ url_for('static', filename='background.png') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center center;
+        }
+
+        /* Header Tile Container */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #e3f2fd;
+            border-bottom: none;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 20px auto 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        /* H1 used for the tile title */
+        header h1 {
+            color: #1e88e5;
+            font-size: 3em;
+            font-family: 'Titan One', sans-serif;
+            margin: 0;
+        }
+
+        .container p:first-of-type {
+            color: #777;
+            margin-top: 15px;
+        }
+
+        .result-box {
+            border: 2px solid #ccc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .result-box h2 {
+            font-size: 1.6em;
+            color: #1e88e5;
+            margin-top: 0;
+            font-family: inherit;
+        }
+
+        .value {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #c62828;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        /* === BMI Tachymeter Styles === */
+        #bmi-gauge-container {
+            position: relative;
+            width: 400px; 
+            height: 200px; 
+            margin: 20px auto;
+            background-image: url("{{ url_for('static', filename='bmi_gauge_background.png') }}"); 
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center bottom;
+        }
+
+        #bmi-needle {
+            position: absolute;
+            bottom: 0px; 
+            left: 50%; 
+            width: 4px; 
+            height: 150px; 
+            background-color: #c62828; 
+            transform-origin: 50% 100%; 
+            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: translateX(-50%) rotate(-90deg); 
+            border-radius: 2px 2px 0 0; 
+            filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)); 
+        }
+
+        #needle-pivot-dot {
+            position: absolute;
+            bottom: -5px; 
+            left: 50%;
+            transform: translateX(-50%); 
+            width: 20px;
+            height: 20px;
+            background-color: #000; 
+            border: 3px solid #fff; 
+            border-radius: 50%; 
+            z-index: 1; 
+        }
+
+
+        /* Category Label Styles */
+        .category {
+            font-size: 1.4em;
+            padding: 8px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* Category specific colors for the label background */
+        .category[data-category*="Underweight"] { background-color: #ff9800; }
+        .category[data-category*="Normal"] { background-color: #4CAF50; }
+        .category[data-category*="Overweight"] { background-color: #ff5722; }
+        .category[data-category*="Obese"] { background-color: #f44336; }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #03a9f4;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #0288d1;
+        }
+        
+        .advice-text {
+            color: #1e88e5;
+            font-style: italic;
+            font-weight: bold;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Your Health Metrics Results</h1>
+    </header>
+
+    <div class="container">
+
+        <p>According to our calculations:</p>
+
+        <div class="result-box">
+            <h2>Estimated Daily Calorie Needs</h2>
+            <span class="value">{{ tdee }} Calories/Day</span>
+            
+            <p class="advice-text">{{ advice }}</p>
+        </div>
+
+        <div class="result-box">
+            <h2>Body Mass Index (BMI)</h2>
+            <span class="value">{{ bmi }} kg/m²</span>
+
+            <div id="bmi-gauge-container">
+                <div id="bmi-needle"></div>
+                <div id="needle-pivot-dot"></div>
+            </div>
+            
+            <p>Health Category:</p>
+            <span class="category" data-category="{{ category }}">{{ category }}</span>
+            <p style="margin-top: 15px; font-style: italic;">
+                Your BMI suggests you are in the <strong>{{ category }}</strong> range.
+            </p>
+        </div>
+
+        <a href="{{ url_for('index') }}" class="back-button">
+            Go Back to Calculator
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const bmiValue = parseFloat("{{ bmi }}");
+            const needle = document.getElementById('bmi-needle');
+
+            // Define the angular range for the gauge (180)
+            const minAngle = -90; 
+            const maxAngle = 90;  
+            
+            // Defining the range
+            const minBmi = 15;
+            const maxBmi = 35;
+
+            let angle;
+
+            // Guage Range (15 to 35)
+            const clampedBmi = Math.max(minBmi, Math.min(maxBmi, bmiValue));
+
+            // Calculate the percentage position 
+            const positionRatio = (clampedBmi - minBmi) / (maxBmi - minBmi);
+
+            // Map the ratio to the angular range
+            angle = minAngle + positionRatio * (maxAngle - minAngle);
+
+            // Apply the rotation transform to the needle element, preserving the translateX
+            needle.style.transform = `translateX(-50%) rotate(${angle}deg)`;
+        });
+    </script>
+
+</body>
+</html>
