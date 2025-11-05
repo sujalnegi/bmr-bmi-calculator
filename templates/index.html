@@ -10,10 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Titan+One&display=swap" rel="stylesheet">
 
     <style>
-        /* Universal Reset and Basic Typography */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
             color: #333;
             margin: 0;
             padding: 0;
@@ -28,9 +26,8 @@
 
         main {
             max-width: 700px;
-            /* margin: 50px auto; */
             padding: 20px;
-            background: #fff;
+            background: #ffe9d5;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin: 20px auto 50px auto;
@@ -39,9 +36,8 @@
 
         header {
             text-align: center;
-            padding-bottom: 20px 0;
+            padding: 20px 0;
             background-color: #e3f2fd;
-            /* border-bottom: 1px solid #eee; */
             border-bottom: none;
             margin-bottom: 30px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -49,16 +45,13 @@
 
         h1 {
             color: #1e88e5;
-            /* A pleasant blue */
             font-size: 3em;
             margin-bottom: 5px;
             font-family: 'Titan One', sans-serif;
         }
 
         header p {
-            /* Target the subtitle specifically to ensure contrast */
             color: #555;
-            /* Darker text for readability on the light blue background */
             margin-top: 5px;
             font-size: 1.1em;
         }
@@ -67,7 +60,6 @@
             color: #777;
         }
 
-        /* Form and Fieldset Styling */
         #calorie-form fieldset {
             border: 1px solid #ccc;
             padding: 20px;
@@ -82,7 +74,6 @@
             font-size: 1.1em;
         }
 
-        /* Input and Label Alignment */
         #calorie-form label {
             display: block;
             margin-bottom: 5px;
@@ -99,18 +90,14 @@
             box-sizing: border-box;
         }
 
-        /* Specific styling for the Weight/Height input groups for inline elements */
         fieldset>div:not(:nth-child(3)) {
-            /* Target all divs except the gender one */
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 15px;
         }
 
-        /* Customizing the gender radio buttons to align better */
         fieldset>div:nth-child(3) {
-            /* Targeting the gender div */
             display: block;
             margin-bottom: 15px;
         }
@@ -122,19 +109,16 @@
             margin-right: 15px;
         }
 
-        /* Specific styling for Height inputs (feet/inches) */
         #height-ft-in input {
             width: 80px;
             margin-right: 5px;
         }
 
-        /* Submit Button Style */
         button[type="submit"] {
             display: block;
             width: 100%;
             padding: 12px;
             background-color: #4CAF50;
-            /* Green submit button */
             color: white;
             border: none;
             border-radius: 4px;
@@ -147,21 +131,8 @@
             background-color: #45a049;
         }
 
-        /* Result Area Styling */
         #result-area {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #e3f2fd;
-            /* Light blue background for emphasis */
-            border: 1px solid #bbdefb;
-            border-radius: 6px;
-            text-align: center;
-        }
-
-        #result-area h2 {
-            color: #1e88e5;
-            font-size: 1.4em;
-            margin-top: 0;
+            display: none;
         }
 
         #tdee-result {
@@ -176,11 +147,11 @@
 
     <header>
         <h1>Calculate Your Daily Calorie Needs</h1>
-        <p>Using the Mifflin-St Jeor Equation</p>
+        <!-- <p>Using the <a href="https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation" target="_blank">Mifflin-St Jeor Equation</a></p> -->
     </header>
 
     <main>
-        <form id="calorie-form" method="POST" action="/">
+        <form id="calorie-form" method="POST" action="{{ url_for('calculate') }}">
             <fieldset>
                 <legend>Personal Information</legend>
 
@@ -207,7 +178,7 @@
                     <option value="lbs">Pounds (lbs)</option>
                 </select>
             </fieldset>
-
+            
             <fieldset>
                 <legend>Height</legend>
 
@@ -246,16 +217,6 @@
             <button type="submit">Calculate Calories</button>
         </form>
 
-        <section id="result-area">
-            <h2>Your Estimated Daily Calorie Needs (TDEE)</h2>
-            <p id="tdee-result">
-                {% if tdee_result %}
-                {{ tdee_result }} Calories/Day
-                {% else %}
-                Fill out the form and click 'Calculate' to see your result.
-                {% endif %}
-            </p>
-        </section>
     </main>
 
     <script>
@@ -265,25 +226,20 @@
         const heightFtInput = document.getElementById('height-ft');
         const heightInInput = document.getElementById('height-in');
 
-        // Initial setup
         heightFtInput.removeAttribute('required');
         heightInInput.removeAttribute('required');
 
         heightUnitSelect.addEventListener('change', function () {
             if (this.value === 'ftin') {
-                // Show ft/in, hide cm
                 heightCmInput.style.display = 'none';
                 heightCmInput.removeAttribute('required');
                 heightFtInDiv.style.display = 'block';
-                // Make ft/in required
                 heightFtInput.setAttribute('required', 'required');
                 heightInInput.setAttribute('required', 'required');
             } else {
-                // Show cm, hide ft/in
                 heightCmInput.style.display = 'block';
                 heightCmInput.setAttribute('required', 'required');
                 heightFtInDiv.style.display = 'none';
-                // Remove requirement from ft/in
                 heightFtInput.removeAttribute('required');
                 heightInInput.removeAttribute('required');
             }
