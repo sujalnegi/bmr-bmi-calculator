@@ -30,14 +30,14 @@
             background: #ffe9d5;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin: 20px auto 50px auto; 
+            margin: 20px auto 50px auto;
         }
 
 
         header {
             text-align: center;
-            padding: 20px 0; 
-            background-color: #e3f2fd; 
+            padding: 20px 0;
+            background-color: #e3f2fd;
             border-bottom: none;
             margin-bottom: 30px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -50,7 +50,7 @@
             font-family: 'Titan One', sans-serif;
         }
 
-        header p { 
+        header p {
             color: #555;
             margin-top: 5px;
             font-size: 1.1em;
@@ -132,7 +132,7 @@
         }
 
         #result-area {
-            display: none; 
+            display: none;
         }
 
         #tdee-result {
@@ -147,7 +147,7 @@
 
     <header>
         <h1>Calculate Your Daily Calorie Needs</h1>
-        <p>Using the Mifflin-St Jeor Equation</p>
+        <!-- <p>Using the <a href="https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation" target="_blank">Mifflin-St Jeor Equation</a></p> -->
     </header>
 
     <main>
@@ -178,7 +178,7 @@
                     <option value="lbs">Pounds (lbs)</option>
                 </select>
             </fieldset>
-
+            
             <fieldset>
                 <legend>Height</legend>
 
@@ -217,7 +217,7 @@
             <button type="submit">Calculate Calories</button>
         </form>
 
-        </main>
+    </main>
 
     <script>
         const heightUnitSelect = document.getElementById('height-unit');
@@ -226,25 +226,20 @@
         const heightFtInput = document.getElementById('height-ft');
         const heightInInput = document.getElementById('height-in');
 
-        // Initial setup
         heightFtInput.removeAttribute('required');
         heightInInput.removeAttribute('required');
 
         heightUnitSelect.addEventListener('change', function () {
             if (this.value === 'ftin') {
-                // Show ft/in, hide cm
                 heightCmInput.style.display = 'none';
                 heightCmInput.removeAttribute('required');
                 heightFtInDiv.style.display = 'block';
-                // Make ft/in required
                 heightFtInput.setAttribute('required', 'required');
                 heightInInput.setAttribute('required', 'required');
             } else {
-                // Show cm, hide ft/in
                 heightCmInput.style.display = 'block';
                 heightCmInput.setAttribute('required', 'required');
                 heightFtInDiv.style.display = 'none';
-                // Remove requirement from ft/in
                 heightFtInput.removeAttribute('required');
                 heightInInput.removeAttribute('required');
             }
