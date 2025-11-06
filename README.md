@@ -1,5 +1,6 @@
 # bmr-bmi-calculator
 BMR (Basal Metabolic Rate) and BMI (Body Mass Index) calculator is a tool that takes your personal information to provide feedback on your daily diet and assess obesity status
+
 ![bmr-bmi-calculator](https://i.ibb.co/gbvj8mQp/Untitled-1.jpg)
 ## Features
 - TDEE Calculation: Total Daily Energy Expenditure using the Mifflin-St Jeor Equation
