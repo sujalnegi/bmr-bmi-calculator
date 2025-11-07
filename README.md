@@ -2,6 +2,13 @@
 BMR (Basal Metabolic Rate) and BMI (Body Mass Index) calculator is a tool that takes your personal information to provide feedback on your daily diet and assess obesity status
 
 ![bmr-bmi-calculator](https://i.ibb.co/gbvj8mQp/Untitled-1.jpg)
+
+Visit @ [bmrbmicalculator.pythonanywhere.com](https://bmrbmicalculator.pythonanywhere.com/)
+
+[![GitHub](https://img.shields.io/badge/GitHub-bmr_bmi_calculator-purple?logo=github)](https://github.com/sujalnegi/bmr-bmi-calculator)
+![hackatime](https://hackatime-badge.hackclub.com/U09FLTYE9FF/bmr-bmi-calculator)
+
+
 ## Features
 - TDEE Calculation: Total Daily Energy Expenditure using the Mifflin-St Jeor Equation
 - BMI Calculation: Calculates Body Mass Index(BMI) and determines the corresponding health category (underweight, normal, overweight, obese).
