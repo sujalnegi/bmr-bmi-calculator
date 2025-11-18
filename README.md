@@ -1,13 +1,19 @@
 # bmr-bmi-calculator
-BMR (Basal Metabolic Rate) and BMI (Body Mass Index) calculator is a tool that takes your personal information to provide feedback on your daily diet and assess obesity status
 
-![bmr-bmi-calculator](https://i.ibb.co/gbvj8mQp/Untitled-1.jpg)
+<div align="center">
+  <img src="https://i.ibb.co/gbvj8mQp/Untitled-1.jpg" alt="Logo" width="200"/>
+   
+
+
+**BMR (Basal Metabolic Rate) and BMI (Body Mass Index) calculator is a tool that takes your personal information to provide feedback on your daily diet and assess obesity status**
+
 
 Visit @ [bmrbmicalculator.pythonanywhere.com](https://bmrbmicalculator.pythonanywhere.com/)
 
 [![GitHub](https://img.shields.io/badge/GitHub-bmr_bmi_calculator-purple?logo=github)](https://github.com/sujalnegi/bmr-bmi-calculator)
 ![hackatime](https://hackatime-badge.hackclub.com/U09FLTYE9FF/bmr-bmi-calculator)
 
+</div>
 
 ## Features
 - TDEE Calculation: Total Daily Energy Expenditure using the Mifflin-St Jeor Equation
@@ -21,6 +27,8 @@ Visit @ [bmrbmicalculator.pythonanywhere.com](https://bmrbmicalculator.pythonany
 
 ## Demo
 A demo video of me using the site. [Link](https://drive.google.com/file/d/1MXLdvN2Ja8u0Bpgrku6eXRnnKTCq8a4v/view?usp=drive_link)
+
+**If the Site is unreachable please try to access with a VPN or through TOR Browser as the India Servers of pythonanywhere.com under mantainance.**
 
 ## Local Setup and Installation
 
